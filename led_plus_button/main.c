@@ -7,20 +7,24 @@ bool wasButtonPressed = false;
 bool isLedActive = false;
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT);
+    pinMode(ledPin, OUTPUT);
+    pinMode(buttonPin, INPUT);
 }
- 
-void loop() {
-  buttonState = digitalRead(buttonPin);
-  
-  if (buttonState == HIGH) {
-      wasButtonPressed = true;
+
+void buttonStateHandler(int buttonState){
+    if (buttonState == HIGH) {
+        wasButtonPressed = true;
     }
-  
-   else if (wasButtonPressed == true){
+    
+    else if (wasButtonPressed == true){
         digitalWrite(ledPin, (isLedActive ? LOW: HIGH));
         isLedActive = !isLedActive;
         wasButtonPressed = false;
-   }
+    }
 }
+
+void loop() {
+    buttonState = digitalRead(buttonPin);
+    buttonStateHandler(buttonState);
+}
+
