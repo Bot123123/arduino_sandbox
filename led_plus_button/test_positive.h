@@ -21,8 +21,14 @@ int digitalRead(int pin){
     return 0;
 }
 
+int digitalWritePins[5];
+int digitalWriteStates[5];
+int digitalWriteCounter = 0;
+
 void digitalWrite(int pin, int state){
-    printf("digitalWrite: pin -> %d, state -> %d\n", pin, state);
+    digitalWritePins[digitalWriteCounter] = pin;
+    digitalWriteStates[digitalWriteCounter] = state;
+    digitalWriteCounter += 1;
 }
 
 void pinMode(int pin, int state){
